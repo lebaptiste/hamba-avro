@@ -16,6 +16,9 @@ package {{ .PackageName }}
 	type {{ .Name }} struct {
 	{{- range .Fields }}
 		{{- $f := . }}
+		{{- if $f.AvroFieldDoc }}
+		// {{ $f.AvroFieldDoc }}
+		{{- end }}
 		{{ .Name }} {{ .Type }} `avro:"{{ $f.AvroFieldName }}"
 		{{- range $tag, $style := .Tags }}
 			{{- " "}}{{ $tag }}:"
